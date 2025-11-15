@@ -20,8 +20,8 @@ public class LoginPage extends BasePage {
         }
     }
 
-    public BasePage logInAsValid(String username, String password, boolean isParent) {
-        if (username.equals("")) {
+    public BasePage logInAsValid(String email, String password, boolean isParent) {
+        if (email.equals("")) {
             throw new IllegalArgumentException("Valid username must not be blank.");
         }
 
@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
         }
 
         WebElement emailInput = driver.findElement(emailInputLocator);
-        emailInput.sendKeys(username);
+        emailInput.sendKeys(email);
 
         WebElement passwordInput = driver.findElement(passwordInputLocator);
         passwordInput.sendKeys(password);
@@ -45,6 +45,16 @@ public class LoginPage extends BasePage {
         }
     }
 
+    public ParentApplicationsPage loginAsParent(String email, String password) {
+        logInAsValid(email, password, true);
+        return new ParentApplicationsPage(driver);
+    }
+
+    public LoggedInHomePage loginAsNonParent(String email, String password) {
+        logInAsValid(email, password, false);
+        return new LoggedInHomePage(driver);
+    }
+
     public LoginPage logInWithoutPassword(String username) {
         if (username.equals("")) {
             throw new IllegalArgumentException("Valid username must not be blank.");
@@ -56,7 +66,7 @@ public class LoginPage extends BasePage {
         WebElement loginButton = driver.findElement(loginButtonLocator);
         loginButton.click();
 
-        return new LoginPage(driver);
+        return this;
     }
 
     public RegistrationPage goToRegistration() {

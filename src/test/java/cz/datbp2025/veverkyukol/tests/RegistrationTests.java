@@ -4,6 +4,7 @@ import cz.datbp2025.veverkyukol.components.NavigationBar;
 import cz.datbp2025.veverkyukol.model.UserData;
 import cz.datbp2025.veverkyukol.pages.ParentApplicationsPage;
 import cz.datbp2025.veverkyukol.pages.RegistrationPage;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static cz.datbp2025.veverkyukol.pages.BasePage.BASE_URL;
@@ -15,20 +16,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RegistrationTests extends BaseTest {
 
     @Test
+    @Tag("DATBP25V-10")
+    @Tag(REGRESSION)
     void userCanRegister() throws InterruptedException {
         UserData userData = new UserData.Builder().defaultData().build();
         driver.get(BASE_URL);
 
         new NavigationBar(driver)
-                .goToLogin()
+                .navigateToLogin()
                 .goToRegistration()
                 .register(userData, true);
 
+        NavigationBar nav = new NavigationBar(driver);
         assertEquals(ParentApplicationsPage.URL, driver.getCurrentUrl());
-        assertTrue(new NavigationBar(driver).isUserLoggedIn());
+        assertTrue(nav.isUserLoggedIn());
+        assertTrue(nav.isUserRoleParent());
     }
 
     @Test
+    @Tag("DATBP25V-10")
+    @Tag(REGRESSION)
     void userCannotRegisterWithoutRequiredFields() {
         final UserData data1 = new UserData.Builder().build();
         final UserData data2 = new UserData.Builder().from(data1).withName("Automatická Veverka").build();
@@ -54,6 +61,8 @@ public class RegistrationTests extends BaseTest {
     }
 
     @Test
+    @Tag("DATBP25V-10")
+    @Tag(REGRESSION)
     void userCannotRegisterWithoutMatchingPasswords() {
         final UserData data = new UserData.Builder()
                 .defaultData()

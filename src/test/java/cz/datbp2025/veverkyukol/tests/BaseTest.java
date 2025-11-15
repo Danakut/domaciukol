@@ -7,6 +7,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public abstract class BaseTest {
 
+    //test tags
+    public static final String REGRESSION = "regression";
+    public static final String API = "api";
+
+    //most used test data
     public static final String PARENT_EMAIL = "kutalkovad+parentedit@gmail.com";
     public static final String PARENT_PASSWORD = "Rodic8";
     public static final String ADMIN_EMAIL = "kutalkovad+a@gmail.com";

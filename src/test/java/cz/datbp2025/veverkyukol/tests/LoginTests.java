@@ -1,15 +1,15 @@
 package cz.datbp2025.veverkyukol.tests;
 
 import cz.datbp2025.veverkyukol.components.NavigationBar;
-import cz.datbp2025.veverkyukol.pages.BasePage;
 import cz.datbp2025.veverkyukol.pages.LoginPage;
 import cz.datbp2025.veverkyukol.pages.ParentApplicationsPage;
 import cz.datbp2025.veverkyukol.pages.PublicHomePage;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static cz.datbp2025.veverkyukol.pages.BasePage.*;
+import static cz.datbp2025.veverkyukol.pages.BasePage.BASE_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +18,8 @@ public class LoginTests extends BaseTest {
 
 
     @ParameterizedTest
+    @Tag("DATBP25V-10")
+    @Tag(REGRESSION)
     //TODO Switch CSVSource for MethodSource with secure loading of credentials
     @CsvSource({
             "'master admin', kutalkovad+ma@gmail.com, AppRoot123",
@@ -28,13 +30,14 @@ public class LoginTests extends BaseTest {
         driver.get(BASE_URL);
 
         new NavigationBar(driver)
-                .goToLogin()
+                .navigateToLogin()
                 .logInAsValid(email, password, role.equals("parent"));
 
         assertTrue(new NavigationBar(driver).isUserLoggedIn());
     }
 
     @Test
+    @Tag("DATBP25V-10")
     void parentRedirectedAfterLogin() {
         driver.get(LoginPage.URL);
 
@@ -45,6 +48,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @Tag("DATBP25V-10")
     void userCannotLogInWithoutPassword() {
         driver.get(LoginPage.URL);
 
@@ -55,6 +59,8 @@ public class LoginTests extends BaseTest {
     }
 
     @ParameterizedTest
+    @Tag("DATBP25V-10")
+    @Tag(REGRESSION)
     @CsvSource({
             "'master admin', kutalkovad+ma@gmail.com, AppRoot123",
             "admin, kutalkovad+a@gmail.com, Czechitas123",
