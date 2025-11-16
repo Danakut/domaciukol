@@ -4,11 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class ParentApplicationsPage extends BasePage {
 
     public static final String URL = BASE_URL + "zaci";
 
     private final By createApplicationLinkLocator = By.linkText("Vytvořit novou přihlášku");
+    private final By rowsLocator = By.cssSelector("tbody tr");
 
     public ParentApplicationsPage(WebDriver driver) {
         super(driver);
@@ -25,5 +28,10 @@ public class ParentApplicationsPage extends BasePage {
     public LoggedInHomePage navigateToCreateNewApplication() {
         driver.get(BASE_URL);
         return new LoggedInHomePage(driver);
+    }
+
+    public List<WebElement> getApplications() {
+        List<WebElement> rows = driver.findElements(rowsLocator);
+        return rows;
     }
 }

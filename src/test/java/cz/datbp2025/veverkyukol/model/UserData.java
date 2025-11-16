@@ -37,6 +37,22 @@ public class UserData {
         return role;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[name=");
+        sb.append(name);
+        sb.append("; email=");
+        sb.append(email);
+        sb.append("; password=");
+        sb.append(password);
+        sb.append("; passwordConfirm=");
+        sb.append(passwordConfirm);
+        sb.append("; role=");
+        sb.append(role.toString());
+        return sb.toString();
+    }
+
     public static class Builder {
         private String name = "";
         private String email = "";

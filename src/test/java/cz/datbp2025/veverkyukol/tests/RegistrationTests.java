@@ -18,17 +18,18 @@ public class RegistrationTests extends BaseTest {
     @Test
     @Tag("DATBP25V-10")
     @Tag(REGRESSION)
-    void userCanRegister() throws InterruptedException {
-        UserData userData = new UserData.Builder().defaultData().build();
+    void userCanRegister() {
         driver.get(BASE_URL);
+        UserData userData = new UserData.Builder().defaultData().build();
+        System.out.println(userData);
 
         new NavigationBar(driver)
                 .navigateToLogin()
                 .goToRegistration()
                 .register(userData, true);
 
-        NavigationBar nav = new NavigationBar(driver);
         assertEquals(ParentApplicationsPage.URL, driver.getCurrentUrl());
+        NavigationBar nav = new NavigationBar(driver);
         assertTrue(nav.isUserLoggedIn());
         assertTrue(nav.isUserRoleParent());
     }
@@ -64,12 +65,12 @@ public class RegistrationTests extends BaseTest {
     @Tag("DATBP25V-10")
     @Tag(REGRESSION)
     void userCannotRegisterWithoutMatchingPasswords() {
+        driver.get(RegistrationPage.URL);
         final UserData data = new UserData.Builder()
                 .defaultData()
                 .withPassword("another password")
                 .build();
         assertNotEquals(data.password(), data.passwordConfirm());
-        driver.get(RegistrationPage.URL);
 
         new RegistrationPage(driver).register(data, false);
 

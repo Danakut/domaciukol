@@ -1,7 +1,6 @@
 package cz.datbp2025.veverkyukol.pages;
 
 import cz.datbp2025.veverkyukol.components.CoursePicker;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoggedInHomePage extends BasePage {

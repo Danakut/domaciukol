@@ -19,7 +19,7 @@ public class CreateApplicationPage extends BasePage {
     private By postalPaymentLocator = By.id("payment_postal_order");
     private By fkspPaymentLocator = By.id("payment_fksp");
     private By cashPaymentLocator = By.id("payment_cash");
-    private By restrictionsCheckboxLocator = By.id("restrictions_yes");
+    private By restrictionsCheckboxLocator = By.cssSelector("label[for='restrictions_yes']");
     private By restrictionsTextareaLocator = By.id("restrictions");
     private By noteLocator = By.id("note");
     private By tocCheckboxLocator = By.cssSelector("label[for='terms_conditions']");
@@ -56,7 +56,7 @@ public class CreateApplicationPage extends BasePage {
         driver.findElement(forenameLocator);
         driver.findElement(forenameLocator).sendKeys(data.forename());
         driver.findElement(surnameLocator).sendKeys(data.surname());
-        driver.findElement(birthdayLocator).sendKeys(data.birthdate());
+        driver.findElement(birthdayLocator).sendKeys(data.dob());
 
         WebElement emailInput = driver.findElement(emailLocator);
         emailInput.clear();

@@ -1,7 +1,6 @@
 package cz.datbp2025.veverkyukol.pages;
 
 import cz.datbp2025.veverkyukol.components.NavigationBar;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
