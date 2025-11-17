@@ -17,7 +17,7 @@ public class OrderData {
     private final String end3;
 
 
-    private OrderData(String ico, String client, String substitute, String address, String contactName, String phone, String email, String start1, String end1, String start2, String end2, String start3, String end3) {
+    private OrderData(String ico, String client, String address, String substitute, String contactName, String phone, String email, String start1, String end1, String start2, String end2, String start3, String end3) {
         this.ico = ico;
         this.client = client;
         this.address = address;
@@ -200,7 +200,7 @@ public class OrderData {
         }
 
         public OrderData build() {
-            return new OrderData(ico, client, address,substitute, contactName, phone, email, start1, end1, start2, end2, start3, end3);
+            return new OrderData(ico, client, address, substitute, contactName, phone, email, start1, end1, start2, end2, start3, end3);
         }
     }
 

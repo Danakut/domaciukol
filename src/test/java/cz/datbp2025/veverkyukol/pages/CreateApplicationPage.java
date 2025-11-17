@@ -16,9 +16,9 @@ public class CreateApplicationPage extends BasePage {
     private By birthdayLocator = By.id("birthday");
     private By emailLocator = By.id("email");
     private By transferPaymentLocator = By.cssSelector("label[for='payment_transfer']");
-    private By postalPaymentLocator = By.id("payment_postal_order");
-    private By fkspPaymentLocator = By.id("payment_fksp");
-    private By cashPaymentLocator = By.id("payment_cash");
+    private By postalPaymentLocator = By.cssSelector("label[for='payment_postal_order']");
+    private By fkspPaymentLocator = By.cssSelector("label[for='payment_fksp']");
+    private By cashPaymentLocator = By.cssSelector("label[for='payment_cash']");
     private By restrictionsCheckboxLocator = By.cssSelector("label[for='restrictions_yes']");
     private By restrictionsTextareaLocator = By.id("restrictions");
     private By noteLocator = By.id("note");
