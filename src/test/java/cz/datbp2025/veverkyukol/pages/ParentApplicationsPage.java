@@ -1,5 +1,6 @@
 package cz.datbp2025.veverkyukol.pages;
 
+import cz.datbp2025.veverkyukol.components.Pagination;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,10 @@ public class ParentApplicationsPage extends BasePage {
         }
     }
 
+    public Pagination paginator() {
+        return new Pagination(driver);
+    }
+
     public WebElement createApplicationLink() {
         return driver.findElement(createApplicationLinkLocator);
     }
@@ -31,7 +36,16 @@ public class ParentApplicationsPage extends BasePage {
     }
 
     public List<WebElement> getApplications() {
+        Pagination paginator = new Pagination(driver);
+        paginator.firstPage();
         List<WebElement> rows = driver.findElements(rowsLocator);
+        paginator = new Pagination(driver);
+        while (paginator.hasNextPage()) {
+            paginator.nextPage();
+            rows.addAll(driver.findElements(rowsLocator));
+            paginator = new Pagination(driver);
+        }
+
         return rows;
     }
 }
