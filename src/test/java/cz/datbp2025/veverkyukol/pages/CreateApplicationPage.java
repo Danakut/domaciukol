@@ -26,7 +26,6 @@ public class CreateApplicationPage extends BasePage {
     private By submitButtonLocator = By.cssSelector("[type = 'submit']");
 
 
-
     public CreateApplicationPage(WebDriver driver) {
         super(driver);
 
@@ -40,7 +39,7 @@ public class CreateApplicationPage extends BasePage {
         return By.xpath("//span[@class='text' and contains(text(), '" + term + "')]");
     }
 
-    //TODO refactor to a more general method that throws a specific error when a piece of input data is invalid or missing
+    //TODO refactor to a more general method that throws a specific error when a piece of input data is invalid or missing?
     public ParentApplicationDetailPage fillAndSubmitApplication(ApplicationData data) {
         if (data.payment() == null) {
             throw new IllegalArgumentException("Application data incomplete - payment method must be specified.");

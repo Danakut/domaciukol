@@ -42,14 +42,14 @@ public class CreateApplicationTests extends BaseTest {
                 .navigateToJavaScript()
                 .fillAndSubmitApplication(testData);
 
-        assertEquals(testData.parentName(), applicationDetailPage.getParentName());
-        assertEquals(testData.forename(), applicationDetailPage.getForename());
-        assertEquals(testData.surname(), applicationDetailPage.getSurname());
-        assertEquals(testData.dob(), applicationDetailPage.getDob());
-        assertEquals(testData.email(), applicationDetailPage.getEmail());
-        assertEquals("Stáhnout potvrzení o přihlášení", applicationDetailPage.getApplicationConfirmation().getAttribute("title"));
-        assertThrows(NoSuchElementException.class, applicationDetailPage::getNote);
-        assertThrows(NoSuchElementException.class, applicationDetailPage::getRestrictionsText);
+        assertEquals(testData.parentName(), applicationDetailPage.common().getParentName());
+        assertEquals(testData.forename(), applicationDetailPage.common().getForename());
+        assertEquals(testData.surname(), applicationDetailPage.common().getSurname());
+        assertEquals(testData.dob(), applicationDetailPage.common().getDob());
+        assertEquals(testData.email(), applicationDetailPage.common().getEmail());
+        assertEquals("Stáhnout potvrzení o přihlášení", applicationDetailPage.common().getApplicationConfirmation().getAttribute("title"));
+        assertThrows(NoSuchElementException.class, applicationDetailPage.common()::getNote);
+        assertThrows(NoSuchElementException.class, applicationDetailPage.common()::getRestrictionsText);
         //potentially brittle, but interesting:
         //assertEquals(testData.createdAt(), applicationDetailPage.getCreatedAt());
 
@@ -79,9 +79,9 @@ public class CreateApplicationTests extends BaseTest {
                 .navigateToJavaScript()
                 .fillAndSubmitApplication(testData);
 
-        assertEquals(testData.forename(), applicationDetailPage.getForename());
-        assertEquals(testData.surname(), applicationDetailPage.getSurname());
-        assertEquals(testData.restrictionsText(), applicationDetailPage.getRestrictionsText());
+        assertEquals(testData.forename(), applicationDetailPage.common().getForename());
+        assertEquals(testData.surname(), applicationDetailPage.common().getSurname());
+        assertEquals(testData.restrictionsText(), applicationDetailPage.common().getRestrictionsText());
     }
 
     @Test
@@ -104,9 +104,9 @@ public class CreateApplicationTests extends BaseTest {
                 .navigateToJavaScript()
                 .fillAndSubmitApplication(testData);
 
-        assertEquals(testData.forename(), applicationDetailPage.getForename());
-        assertEquals(testData.surname(), applicationDetailPage.getSurname());
-        assertEquals(testData.note(), applicationDetailPage.getNote());
+        assertEquals(testData.forename(), applicationDetailPage.common().getForename());
+        assertEquals(testData.surname(), applicationDetailPage.common().getSurname());
+        assertEquals(testData.note(), applicationDetailPage.common().getNote());
     }
 
 
@@ -130,11 +130,11 @@ public class CreateApplicationTests extends BaseTest {
                         .navigateToJavaScript()
                         .fillAndSubmitApplication(testData);
 
-        assertEquals("Bankovní převod", applicationDetailPage.getPaymentMethod());
+        assertEquals("Bankovní převod", applicationDetailPage.common().getPaymentMethod());
         assertThrows(NoSuchElementException.class, applicationDetailPage::getInvoiceMessage);
         assertDoesNotThrow(applicationDetailPage::getAccountNumber);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getAccountAddressNumber);
-        assertDoesNotThrow(applicationDetailPage::getAmountToPay);
+        assertDoesNotThrow(applicationDetailPage.common()::getAmountToPay);
         assertDoesNotThrow(applicationDetailPage::getVs);
         assertDoesNotThrow(applicationDetailPage::getKs);
         assertDoesNotThrow(applicationDetailPage::getMessageForRecipient);
@@ -161,11 +161,11 @@ public class CreateApplicationTests extends BaseTest {
                         .navigateToJavaScript()
                         .fillAndSubmitApplication(testData);
 
-        assertEquals("Složenka", applicationDetailPage.getPaymentMethod());
+        assertEquals("Složenka", applicationDetailPage.common().getPaymentMethod());
         assertThrows(NoSuchElementException.class, applicationDetailPage::getInvoiceMessage);
         assertDoesNotThrow(applicationDetailPage::getAccountNumber);
         assertDoesNotThrow(applicationDetailPage::getAccountAddressNumber);
-        assertDoesNotThrow(applicationDetailPage::getAmountToPay);
+        assertDoesNotThrow(applicationDetailPage.common()::getAmountToPay);
         assertDoesNotThrow(applicationDetailPage::getVs);
         assertDoesNotThrow(applicationDetailPage::getKs);
         assertDoesNotThrow(applicationDetailPage::getMessageForRecipient);
@@ -192,11 +192,11 @@ public class CreateApplicationTests extends BaseTest {
                         .navigateToJavaScript()
                         .fillAndSubmitApplication(testData);
 
-        assertEquals("FKSP", applicationDetailPage.getPaymentMethod());
+        assertEquals("FKSP", applicationDetailPage.common().getPaymentMethod());
         assertDoesNotThrow(applicationDetailPage::getInvoiceMessage);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getAccountNumber);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getAccountAddressNumber);
-        assertThrows(NoSuchElementException.class, applicationDetailPage::getAmountToPay);
+        assertThrows(NoSuchElementException.class, applicationDetailPage.common()::getAmountToPay);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getVs);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getKs);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getMessageForRecipient);
@@ -223,12 +223,12 @@ public class CreateApplicationTests extends BaseTest {
                         .navigateToJavaScript()
                         .fillAndSubmitApplication(testData);
 
-        assertEquals("Hotově", applicationDetailPage.getPaymentMethod());
+        assertEquals("Hotově", applicationDetailPage.common().getPaymentMethod());
         assertDoesNotThrow(applicationDetailPage::getCashMessage);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getInvoiceMessage);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getAccountNumber);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getAccountAddressNumber);
-        assertThrows(NoSuchElementException.class, applicationDetailPage::getAmountToPay);
+        assertThrows(NoSuchElementException.class, applicationDetailPage.common()::getAmountToPay);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getVs);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getKs);
         assertThrows(NoSuchElementException.class, applicationDetailPage::getMessageForRecipient);
